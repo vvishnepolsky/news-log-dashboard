@@ -9,3 +9,15 @@ The news paper data analysis dashboard is a text based analysis tool written in 
 ## Installation
 
 ## Required Views
+In order to execute the program the following views will need to be created in the database:
+
+```sql
+  CREATE VIEW total_requests AS
+    SELECT date(time), count(*) from log
+    GROUP BY date(time)
+
+  CREATE VIEW bad_requests AS
+    SELECT date(time), count(*) from log
+    WHERE status = '404 NOT FOUND'
+    GROUP BY date(time)
+```
